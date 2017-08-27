@@ -1,0 +1,158 @@
+body {
+    background-color: #c2eec7;
+    color: #fff;
+    transition: background-color 0.5s;
+    overflow: hidden;
+}
+
+body.error {
+    background-color: #D86F6F;
+}
+
+.digits-container {
+    min-height: 150px;
+    position: relative;
+    margin-top: 200px;
+    transition: margin-top 1s;
+}
+
+.digits-container.moveup {
+    margin-top: 75px;
+}
+
+.digit {
+    display: inline-block;
+    position: relative;
+}
+
+.digit:not(:first-child) {
+    margin-left: 10px;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 90%;
+    background-color: #E6FAE8;
+}
+
+.circle.on:before {
+    content: '';
+    display: inline-block;
+    border-radius: 90%;
+    height: inherit;
+    width: inherit;
+    position: relative;
+    background-color: #6AC375;
+}
+
+body.error .circle {
+    background-color: #FFE9E9;
+}
+
+body.error .circle.on:before {
+    background-color: #AA3A3A;
+}
+
+
+.input-placeholder {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    transition: margin-top 0.5s;
+}
+
+
+.input {
+    width: 0;
+    height: 0;
+    box-shadow: none;
+    border: none;
+    outline: none;
+}
+
+.fade-enter-active .circle.on:before,
+.fade-leave-active .circle.on:before {
+    transition: transform 1s, filter 1s;
+}
+
+.fade-enter .circle.on:before,
+.fade-leave-to .circle.on:before {
+    transform: scale(1.25);
+    filter: blur(150px);
+}
+
+.fade-enter-active .circle,
+.fade-leave-active .circle {
+    transition: transform 1s;
+}
+
+.fade-enter .circle,
+.fade-leave-to .circle {
+    transform: scale(0);
+}
+
+.fade-enter-active.input-placeholder,
+.fade-leave-active.input-placeholder {
+    transition: opacity 1s, margin-top 1s;
+}
+
+.fade-enter.input-placeholder,
+.fade-leave-to.input-placeholder {
+    opacity: 0;
+    margin-top: -25px;
+}
+
+
+
+@-webkit-keyframes raise {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-25px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.digit.loading .circle.on:before {
+    animation: raise 0.5s infinite;
+}
+
+
+.weather-chart {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.weather-chart-item {
+    display: inline-block;
+    height: 200px;
+    width: 150px;
+    background-color: #E6FAE8;
+    position: relative;
+    transition: top 1s;
+    color: #6AC375;
+}
+.weather-chart-item:not(:first-child) {
+    margin-left: 10px;
+}
+
+
+.weather-chart-item .day-of-week {
+    font-size: 25px;
+}
+
+.weather-chart-item .icon img {
+    width: 50%;
+}
+
+
+.weather-chart-item .description {
+    font-size: 16px;
+    font-style: italic;
+}

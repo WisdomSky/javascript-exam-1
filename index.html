@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Javascript Exam 1</title>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div id="vueapp">
+            <div class="text-center">
+                <div class="digits-container" :class="{moveup: weatherData != null}">
+                    <transition-group name="fade" :duration="1000" mode="out-in" tag="div">
+                        <digit-led :value="digit" :key="index" v-for="(digit, index) in rvalue" :ref="'digit-' + index"></digit-led>
+                        <div key="placeholder" v-if="rvalue.length == 0" class="input-placeholder" :class="{hidden:rvalue.length}">
+                            <h4>How's the weather in Australia in the next few days?</h4>
+                            <h1>Type an Australian ZIP Code to know</h1>
+                        </div>
+                    </transition-group>
+                </div>
+                <div v-if="error">
+                    <h1>Sorry, but the ZIP Code you entered is invalid :(</h1>
+                </div>
+                <div v-if="loading">
+                    <h1>Please wait a little bit...</h1>
+                </div>
+                <div v-if="weatherData != null">
+                    <h4 v-if="cities.indexOf(',') !== -1">These are the affected locations</h4>
+                    <h4 v-else>These is the affected location</h4>
+                    <h3>{{ cities }}</h3>
+                </div>
+            </div>
+
+            <weather-chart :weather-data="weatherData"></weather-chart>
+
+
+            <input ref="input" type="text" v-model="value" class="input">
+        </div>
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <!-- Added ES6 Promise Polyfill for backward compatibility -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
+
+        <script src="plugins/open-weather.js"></script>
+        <script src="components/digit-led.js"></script>
+        <script src="components/weather-chart.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
