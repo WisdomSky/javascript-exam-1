@@ -17,7 +17,7 @@
                         <digit-led :value="digit" :key="index" v-for="(digit, index) in rvalue" :ref="'digit-' + index"></digit-led>
                         <div key="placeholder" v-if="rvalue.length == 0" class="input-placeholder" :class="{hidden:rvalue.length}">
                             <h4>How's the weather in Australia in the next few days?</h4>
-                            <h1>Type an Australian ZIP Code to know</h1>
+                            <h1>Enter a ZIP Code of a place to know</h1>
                         </div>
                     </transition-group>
                 </div>
