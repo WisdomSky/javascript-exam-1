@@ -7,7 +7,7 @@ window.OpenWeather = {
     install: function (Vue, options) {
 
         var OpenWeather = {
-            endpoint: 'http://api.openweathermap.org/data/2.5',
+            endpoint: '//api.openweathermap.org/data/2.5',
             config: {
                 appKey: '',
             }
@@ -53,7 +53,7 @@ window.OpenWeather = {
 
             // if `zip` is defined in the params, query all local areas found in the specified zip code
             if (params.zip !== undefined) {
-                promises.push($.getJSON('http://maps.googleapis.com/maps/api/geocode/json', {address: params.zip}, callback))
+                promises.push($.getJSON('//maps.googleapis.com/maps/api/geocode/json', {address: params.zip}, callback))
             }
 
             // abort xhrs if the reject() method is called
